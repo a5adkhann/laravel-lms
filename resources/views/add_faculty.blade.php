@@ -7,7 +7,7 @@
                     <h4 class="mb-0"><i class="fas fa-chalkboard-teacher me-2"></i>Add New Faculty</h4>
                     <span class="badge bg-light text-success">HR Access</span>
                 </div>
-                <div class="card-body p-4">
+                <div class="card-body" style="margin-top: 45px">
 
                     <!-- Form Start -->
                     <form id="addFacultyForm">
