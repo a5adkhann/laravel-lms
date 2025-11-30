@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\faculties\FacultyController;
 use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
@@ -25,6 +26,9 @@ Route::get('/add_faculty', function () {
     return view('add_faculty');
 });
 
-Route::get('/view_faculties', function () {
-    return view('view_faculties');
-});
+Route::post('/add_faculty', [FacultyController::class, "add_faculty"]);
+
+Route::get('/view_faculties', [FacultyController::class, "view_faculties"]);
+
+
+

@@ -1,4 +1,13 @@
 @include("base.header")
+@if(session("success"))
+    <script>
+        Swal.fire({
+            title: "Faculty Onboarded",
+            text: "{{ session("success") }}",
+            icon: "success"
+        });
+    </script>
+@endif
 <div class="body-wrapper-inner">
     <div class="row justify-content-center">
         <div class="col-lg-12">
@@ -10,7 +19,8 @@
                 <div class="card-body" style="margin-top: 45px">
 
                     <!-- Form Start -->
-                    <form id="addFacultyForm">
+                    <form id="addFacultyForm" method="POST" action="/add_faculty">
+                        @csrf
 
                         <!-- Personal Info Section -->
                         <h6 class="text-muted text-uppercase mb-3 font-weight-bold"
@@ -19,7 +29,7 @@
                         <div class="row g-3 mb-4">
                             <div class="col-md-2">
                                 <label for="title" class="form-label">Title</label>
-                                <select class="form-select" id="title">
+                                <select class="form-select" id="title" name="faculty_gender">
                                     <option value="mr">Mr.</option>
                                     <option value="ms">Ms.</option>
                                     <option value="dr">Dr.</option>
@@ -28,12 +38,14 @@
                             </div>
                             <div class="col-md-5">
                                 <label for="firstName" class="form-label">First Name</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="e.g. Jane" required>
+                                <input type="text" class="form-control" id="firstName" placeholder="e.g. Jane" required
+                                    name="faculty_fname">
                                 <div class="invalid-feedback">Please provide a first name.</div>
                             </div>
                             <div class="col-md-5">
                                 <label for="lastName" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="e.g. Smith" required>
+                                <input type="text" class="form-control" id="lastName" placeholder="e.g. Smith" required
+                                    name="faculty_lname">
                                 <div class="invalid-feedback">Please provide a last name.</div>
                             </div>
                         </div>
@@ -45,13 +57,14 @@
                                     <span class="input-group-text bg-light"><i
                                             class="fas fa-envelope text-muted"></i></span>
                                     <input type="email" class="form-control" id="email"
-                                        placeholder="faculty@university.edu" required>
+                                        placeholder="faculty@university.edu" required name="faculty_email">
                                 </div>
                                 <div class="form-text">Faculty portal credentials sent here.</div>
                             </div>
                             <div class="col-md-6">
                                 <label for="phone" class="form-label">Phone Number</label>
-                                <input type="tel" class="form-control" id="phone" placeholder="(555) 987-6543">
+                                <input type="tel" class="form-control" id="phone" placeholder="(555) 987-6543"
+                                    name="faculty_number">
                             </div>
                         </div>
 
@@ -65,18 +78,19 @@
                             <div class="col-md-6">
                                 <label for="employeeId" class="form-label">Employee ID</label>
                                 <input type="text" class="form-control" id="employeeId" placeholder="EMP-2024-XXXX"
-                                    required>
+                                    required name="faculty_empid">
                             </div>
                             <div class="col-md-6">
                                 <label for="joiningDate" class="form-label">Joining Date</label>
-                                <input type="date" class="form-control" id="joiningDate" required>
+                                <input type="date" class="form-control" id="joiningDate" required
+                                    name="faculty_joiningdate">
                             </div>
                         </div>
 
                         <div class="row g-3 mb-4">
                             <div class="col-md-6">
                                 <label for="department" class="form-label">Department</label>
-                                <select class="form-select" id="department" required>
+                                <select class="form-select" id="department" required name="faculty_department">
                                     <option selected disabled value="">Select Department...</option>
                                     <option value="cs">Computer Science</option>
                                     <option value="eng">Engineering</option>
@@ -87,7 +101,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="designation" class="form-label">Designation / Rank</label>
-                                <select class="form-select" id="designation" required>
+                                <select class="form-select" id="designation" required name="faculty_designation">
                                     <option selected disabled value="">Select Rank...</option>
                                     <option value="prof">Professor</option>
                                     <option value="assoc_prof">Associate Professor</option>
@@ -102,23 +116,7 @@
                         <div class="mb-4">
                             <label for="qualification" class="form-label">Highest Qualification</label>
                             <input type="text" class="form-control" id="qualification"
-                                placeholder="e.g. PhD in Data Science">
-                        </div>
-
-                        <!-- Checkbox Options -->
-                        <div class="mb-4 p-3 bg-light rounded">
-                            <div class="form-check mb-2">
-                                <input type="checkbox" class="form-check-input" id="generatePassword" checked>
-                                <label class="form-check-label" for="generatePassword">
-                                    Send onboarding email with temporary password
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="courseAccess">
-                                <label class="form-check-label" for="courseAccess">
-                                    Grant immediate rights to create new courses
-                                </label>
-                            </div>
+                                placeholder="e.g. PhD in Data Science" name="faculty_qualification">
                         </div>
 
                         <!-- Action Buttons -->

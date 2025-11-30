@@ -15,14 +15,21 @@
                             <th>Employee ID</th>
                             <th>Department</th>
                             <th>Rank</th>
+                            <th>Action</th>
                         </tr>
-                        <tr>
-                            <td>jdnj</td>
-                            <td>jhndsanj</td>
-                            <td>gvdahb</td>
-                            <td>gvdahb</td>
-                            <td>gvdahb</td>
+                        @foreach ($data as $value)
+                            <tr>
+                            <td>{{ $value['first_name'] }} {{ $value['last_name'] }}</td>
+                            <td>{{ $value['email'] }}</td>
+                            <td>{{ $value['emp_id'] }}</td>
+                            <td>{{ $value['department'] }}</td>
+                            <td>{{ $value['designation'] }}</td>
+                            <td>
+                                <a href="" class="bg-blue-600 px-10 py-2 text-white">Edit</a>
+                                <a href="" class="bg-red-600 px-10 py-2 text-white">Delete</a>
+                            </td>
                         </tr>
+                        @endforeach
                     </table>
                 </div>
             </div>
