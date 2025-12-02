@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\faculties\FacultyController;
+use App\Http\Controllers\auth\AuthController;
 use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
@@ -30,5 +31,9 @@ Route::post('/add_faculty', [FacultyController::class, "add_faculty"]);
 
 Route::get('/view_faculties', [FacultyController::class, "view_faculties"]);
 
+Route::get('/login', function () {
+    return view('login');
+});
 
+Route::post("/login", [AuthController::class, "login"]);
 

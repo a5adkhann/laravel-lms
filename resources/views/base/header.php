@@ -12,7 +12,7 @@
 <body>
     <!--  Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-         data-header-position="fixed">
+        data-header-position="fixed">
         <!-- Sidebar Start -->
         <aside class="left-sidebar">
             <!-- Sidebar scroll-->
@@ -146,8 +146,15 @@
 
                                     </a>
                                 </li>
-
                             </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="/view_batches">
+                                <div class="text-center">
+                                    <span class="hide-menu">Logout</span>
+                                </div>
+
+                            </a>
                         </li>
                     </ul>
                 </nav>
